@@ -9,6 +9,9 @@ const P = new Pokedex.Pokedex();
 const Search = (props) => {
     
     const [types, setTypes] = useState([])
+    const [sprite, setSprite]=useState("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")
+    const [pokemon, setPokemon]=useState({});
+    
     
     useEffect(()=>{
         P .getPokemonsList()
@@ -26,9 +29,10 @@ const Search = (props) => {
         
         P   .getPokemonByName(props.search)
             .then( res => {
-                props.addPokemon(res)
+                setPokemon(res)
                 console.log("res",res)
                 setTypes(...types, res.types)
+                setSprite(res.sprites.front_default)
             })
             .catch (err => {
                 console.log(err)
@@ -40,6 +44,9 @@ const Search = (props) => {
     console.log("Types", types)
     return(
         <div>
+            <h2>{pokemon.name}</h2>
+            <img src={sprite}/>
+            <h3>Types:</h3>
             {
             types.map((type,i)=>(
                 <Types type={type.type.name} key={i}/>
