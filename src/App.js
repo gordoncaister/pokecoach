@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import { useState, useEffect } from 'react';
 import Search from "./Components/Search"
+import {BgDiv, NavDiv} from "./Components/Styles"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faSearch, faBars} from "@fortawesome/free-solid-svg-icons"
 
 
 
@@ -9,9 +12,8 @@ const App = (props) =>  {
   
 
   const [pokemonList, setPokemonList] = useState([]);
-  const [pokemon, setPokemon]=useState({});
+  
   const [search, setSearch]=useState("bulbasaur");
-
   
   const addToSearch = query => {
     setSearch(query);
@@ -19,26 +21,26 @@ const App = (props) =>  {
   const addtoPokemonList = list => {
     setPokemonList(list);
   }
-  const addPokemon = name => {
-    setPokemon(name);
-  }
-
-  console.log("pokemon", pokemon)
-  console.log("Type: ", pokemon.types)
+  
   let array = [];
 
   array = pokemonList.map((x,i) => {
     return x.name;
   })
-  console.log("List",pokemonList)
-  console.log("Array", array)
+  
 
   
   return (
-  <div>
-    {pokemon.name}
-    <Search search={search} addToSearch={addToSearch} addPokemon={addPokemon} addToPokemonList={addtoPokemonList} />
-  </div>
+  <BgDiv>
+    <NavDiv>
+      <h1>PokéCoach</h1>
+      <a><FontAwesomeIcon icon={faSearch}  /></a>
+      <a><FontAwesomeIcon icon={faBars}  /></a>
+    </NavDiv>
+   
+    
+    <Search  search={search} addToSearch={addToSearch}  addToPokemonList={addtoPokemonList} />
+  </BgDiv>
       
   );
 }
