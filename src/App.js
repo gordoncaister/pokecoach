@@ -1,25 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import Search from "./Components/Search"
 
-function App() {
+
+
+const App = (props) =>  {
+  
+
+  const [pokemonList, setPokemonList] = useState([]);
+  const [pokemon, setPokemon]=useState({});
+  const [search, setSearch]=useState("bulbasaur");
+
+  
+  const addToSearch = query => {
+    setSearch(query);
+  }
+  const addtoPokemonList = list => {
+    setPokemonList(list);
+  }
+  const addPokemon = name => {
+    setPokemon(name);
+  }
+
+  console.log("pokemon", pokemon)
+  console.log("Type: ", pokemon.types)
+  let array = [];
+
+  array = pokemonList.map((x,i) => {
+    return x.name;
+  })
+  console.log("List",pokemonList)
+  console.log("Array", array)
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <div>
+    {pokemon.name}
+    <Search search={search} addToSearch={addToSearch} addPokemon={addPokemon} addToPokemonList={addtoPokemonList} />
+  </div>
+      
   );
 }
 
