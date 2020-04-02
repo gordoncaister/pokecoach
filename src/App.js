@@ -12,11 +12,14 @@ const App = (props) =>  {
   
 
   const [pokemonList, setPokemonList] = useState([]);
-  
+  const [typesList, setTypesList]=useState([])
   const [search, setSearch]=useState("bulbasaur");
   
   const addToSearch = query => {
     setSearch(query);
+  }
+  const addToTypesList = types => {
+    setTypesList(types);
   }
   const addtoPokemonList = list => {
     setPokemonList(list);

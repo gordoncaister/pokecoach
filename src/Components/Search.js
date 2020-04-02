@@ -12,6 +12,7 @@ const Search = (props) => {
     const [sprite, setSprite]=useState("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")
     const [pokemon, setPokemon]=useState({});
     
+    
     useEffect(()=>{
         P .getPokemonsList()
         .then(function(response) {
@@ -48,8 +49,6 @@ const Search = (props) => {
             <h3>Types:</h3>
             {
             types.map((type,i)=>(
-
-                
                 <Types type={type.type.name} key={i}/>
             )
                 
